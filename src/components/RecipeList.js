@@ -71,13 +71,13 @@ export default class RecipeList extends Component {
       <ul id="recipes" data-testid="recipes">
         {this.props.recipes.map((recipe, index) => (
           <li className="recipe" key={recipe.recipeName}>
-            <div className="recipe-header" onClick={this.openRecipe(index)}>{recipe.recipeName}</div>
+            <div className="recipe-header autowrap" onClick={this.openRecipe(index)}>{recipe.recipeName}</div>
             {this.state.openRecipe === index && (
               <div className="recipe-details">
                 <h3 className="header">Ingredients</h3>
                 <ul className="ingredients-list">
                   {recipe.ingredients.map((ingredient) => (
-                    <li key={ingredient}>{ingredient}</li>
+                    <li className="autowrap" key={ingredient}>{ingredient}</li>
                   ))}
                 </ul>
                 <div className="recipe-actions">
