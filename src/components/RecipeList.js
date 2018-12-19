@@ -23,6 +23,16 @@ export default class RecipeList extends Component {
       })
       return
     }
+    const isRecipeNameDuplicated = this.props.recipes.find((recipeItem, recipeItemIndex) =>
+      recipeItem.recipeName === recipe.recipeName && recipeItemIndex !== index
+    )
+    if (isRecipeNameDuplicated) {
+      const errorMessage = 'You cannot have two recipes with the same name.'
+      Alert.error(errorMessage, {
+        timeout: 5000
+      })
+      return
+    }
     const recipes = [...this.props.recipes]
     recipe.ingredients = parseIngredients(recipe.ingredients)
     recipes[index] = recipe

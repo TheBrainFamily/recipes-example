@@ -150,6 +150,23 @@ describe('Recipes', function () {
     cy.getByText('The recipe name cannot be empty.').should('be.visible')
   })
 
+  it('does not allow a duplicated name when editing a recipe', function () {
+    cy.getByText('Spaghetti').click()
+    cy.getByText('Noodles').should('be.visible')
+
+    cy.getByText('Edit').click()
+
+    cy.getByTestId('recipeForm').within(() => {
+      cy.getByTestId('recipeName').clear()
+      cy.getByTestId('recipeName').type('Onion Pie')
+    })
+
+    cy.get('button').contains('Edit Recipe').click()
+
+    cy.getByText('Edit Recipe').should('be.visible')
+    cy.getByText('You cannot have two recipes with the same name.').should('be.visible')
+  })
+
   it('edited recipe is saved in localStorage', function () {
     cy.getByText('Spaghetti').click()
     cy.getByText('Noodles').should('be.visible')
