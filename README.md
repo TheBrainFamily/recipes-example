@@ -1,4 +1,7 @@
 # Starting the app
+Install packages:
+```npm install```
+
 Start the app by:
 ```npm start```
 
