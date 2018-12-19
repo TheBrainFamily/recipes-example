@@ -15,11 +15,11 @@ Run cypress tests headlessly:
 ```npm run cypress```
 
 Run jest unit tests:
-```npm run test```
+```npm test```
 
 # Developing the app
 To develop the app with the help of automatically re-running e2e tests, start the app with:
-```npm run start```
+```npm start```
 
 Then start tests in the other console:
 ```npm run cypress:open```
