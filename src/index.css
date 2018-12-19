@@ -123,6 +123,10 @@ input, textarea {
     font-size: 0.9rem;
 }
 
+textarea {
+    resize: vertical
+}
+
 label {
     display: inline-block;
 }
