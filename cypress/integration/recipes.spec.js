@@ -134,6 +134,22 @@ describe('Recipes', function () {
     recipes.should('not.contain', 'Noodles')
   })
 
+  it('does not allow an empty name when editing a recipe', function () {
+    cy.getByText('Spaghetti').click()
+    cy.getByText('Noodles').should('be.visible')
+
+    cy.getByText('Edit').click()
+
+    cy.getByTestId('recipeForm').within(() => {
+      cy.getByTestId('recipeName').clear()
+    })
+
+    cy.get('button').contains('Edit Recipe').click()
+
+    cy.getByText('Edit Recipe').should('be.visible')
+    cy.getByText('The recipe name cannot be empty.').should('be.visible')
+  })
+
   it('edited recipe is saved in localStorage', function () {
     cy.getByText('Spaghetti').click()
     cy.getByText('Noodles').should('be.visible')

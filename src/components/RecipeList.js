@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import RecipeForm from './RecipeForm'
 import { parseIngredients } from '../helpers'
+import Alert from 'react-s-alert'
 
 export default class RecipeList extends Component {
   state = {
@@ -15,6 +16,13 @@ export default class RecipeList extends Component {
   }
 
   editRecipe = (index) => (recipe) => {
+    if (recipe.recipeName.trim().length === 0) {
+      const errorMessage = 'The recipe name cannot be empty.'
+      Alert.error(errorMessage, {
+        timeout: 5000
+      })
+      return
+    }
     const recipes = [...this.props.recipes]
     recipe.ingredients = parseIngredients(recipe.ingredients)
     recipes[index] = recipe
